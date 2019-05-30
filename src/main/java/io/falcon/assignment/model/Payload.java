@@ -1,5 +1,6 @@
 package io.falcon.assignment.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Data
@@ -19,6 +21,8 @@ public class Payload {
     @GeneratedValue
     private long id;
 
+    @JsonProperty("content")
     private String content;
-    private LocalDateTime timestamp;
+    @JsonProperty("timestamp")
+    private String timestamp;
 }
