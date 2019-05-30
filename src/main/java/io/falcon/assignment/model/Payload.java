@@ -1,5 +1,6 @@
 package io.falcon.assignment.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -22,7 +24,11 @@ public class Payload {
     private long id;
 
     @JsonProperty("content")
+    @NotEmpty(message = "Please provide a word")
     private String content;
     @JsonProperty("timestamp")
+    @NotEmpty(message = "Please provide a timestamp")
     private String timestamp;
+    @JsonIgnore
+    private int longest_palindrome_size;
 }
