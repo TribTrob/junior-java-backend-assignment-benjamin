@@ -29,6 +29,5 @@ public class Payload {
     @JsonProperty("timestamp")
     @NotEmpty(message = "Please provide a timestamp")
     private String timestamp;
-    @JsonIgnore
     private int longest_palindrome_size;
 }
