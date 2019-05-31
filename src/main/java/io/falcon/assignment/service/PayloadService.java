@@ -25,14 +25,14 @@ public class PayloadService {
     }
 
 
-    private void setLongestPalindrome(List<Payload>payloads){
+    public void setLongestPalindrome(List<Payload>payloads){
         for (Payload payload : payloads){
             int maxLength = getPalindromeLength(payload);
             payload.setLongest_palindrome_size(maxLength);
         }
     }
 
-    private int getPalindromeLength(Payload payload) {
+    public int getPalindromeLength(Payload payload) {
         String content = payload.getContent();
         int n = content.length();
 
