@@ -27,35 +27,40 @@ public class PayloadService {
 
     private void setLongestPalindrome(List<Payload>payloads){
         for (Payload payload : payloads){
-            String content = payload.getContent();
-            int n = content.length();
+            int maxLength = getPalindromeLength(payload);
+            payload.setLongest_palindrome_size(maxLength);
+        }
+    }
 
-            boolean table[][] = new boolean[n][n];
+    private int getPalindromeLength(Payload payload) {
+        String content = payload.getContent();
+        int n = content.length();
 
-            int maxLength = 1;
-            for (int i =0; i <n; i++){
-                table[i][i] = true;}
+        boolean table[][] = new boolean[n][n];
 
-            for (int i=0; i <n-1; i++){
-                if(content.charAt(i) == content.charAt(i+1)){
-                    table[i][i+1] = true;
-                    maxLength = 2;
-                    }
+        int maxLength = 1;
+        for (int i =0; i <n; i++){
+            table[i][i] = true;}
+
+        for (int i=0; i <n-1; i++){
+            if(content.charAt(i) == content.charAt(i+1)){
+                table[i][i+1] = true;
+                maxLength = 2;
                 }
-            for (int k = 3; k <= n; ++k){
-                for (int i = 0; i < n - k + 1; ++i){
-                    int j = i + k - 1;
-                    if (table[i + 1][j - 1] && content.charAt(i) ==
-                            content.charAt(j)){
-                        table[i][j] = true;
-                        if (k > maxLength) {
-                            maxLength = k;
-                        }
+            }
+        for (int k = 3; k <= n; ++k){
+            for (int i = 0; i < n - k + 1; ++i){
+                int j = i + k - 1;
+                if (table[i + 1][j - 1] && content.charAt(i) ==
+                        content.charAt(j)){
+                    table[i][j] = true;
+                    if (k > maxLength) {
+                        maxLength = k;
                     }
                 }
             }
-            payload.setLongest_palindrome_size(maxLength);
         }
+        return maxLength;
     }
 }
 
